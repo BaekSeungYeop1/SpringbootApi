@@ -23,6 +23,13 @@
             <version>2.5.5</version>
         </dependency>
 
+        <!-- lombok, slf4j -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <!-- DB -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
