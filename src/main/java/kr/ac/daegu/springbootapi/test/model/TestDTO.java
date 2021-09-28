@@ -1,4 +1,4 @@
-package kr.ac.daegu.springbootapi.model;
+package kr.ac.daegu.springbootapi.test.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

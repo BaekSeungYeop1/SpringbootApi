@@ -1,7 +1,7 @@
-package kr.ac.daegu.springbootapi.controller;
+package kr.ac.daegu.springbootapi.test.controller;
 
-import kr.ac.daegu.springbootapi.model.TestDTO;
-import kr.ac.daegu.springbootapi.service.BoardService;
+import kr.ac.daegu.springbootapi.test.model.TestDTO;
+import kr.ac.daegu.springbootapi.test.service.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +12,9 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class BoardController {
+public class TestController {
 
-    public final BoardService boardService;
+    public final TestService testService;
 
     @GetMapping(value = "/")
     public List<TestDTO> rootTest() throws Exception {
@@ -25,7 +25,7 @@ public class BoardController {
         log.error("logTest~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         // 간단한 list 생성
-        List<TestDTO> testList = boardService.getTestList();
+        List<TestDTO> testList = testService.getTestList();
 
         return testList;
     }
