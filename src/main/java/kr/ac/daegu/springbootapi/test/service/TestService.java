@@ -17,4 +17,9 @@ public class TestService {
         return testDAO.getTestList();
     }
 
+    public String insertTest(TestDTO testDTO) throws Exception {
+        // testDTO db에 insert
+        int result = testDAO.insertTest(testDTO);
+        return result + " rows inserted";
+    }
 }

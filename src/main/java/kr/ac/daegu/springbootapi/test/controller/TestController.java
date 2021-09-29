@@ -4,9 +4,7 @@ import kr.ac.daegu.springbootapi.test.model.TestDTO;
 import kr.ac.daegu.springbootapi.test.service.TestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +28,11 @@ public class TestController {
         List<TestDTO> testList = testService.getTestList();
 
         return testList;
+    }
+
+    @PostMapping(value = "/")
+    public String insertTest(@RequestBody TestDTO testDTO) throws Exception {
+        log.debug("insertTest");
+        return testService.insertTest(testDTO);
     }
 }

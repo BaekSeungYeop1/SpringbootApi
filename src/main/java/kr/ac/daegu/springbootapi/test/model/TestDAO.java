@@ -7,4 +7,6 @@ import java.util.List;
 @Repository
 public interface TestDAO {
     List<TestDTO> getTestList();
+
+    int insertTest(TestDTO testDTO);
 }

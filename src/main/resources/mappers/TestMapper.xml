@@ -7,6 +7,10 @@
         SELECT * FROM Test
     </select>
 
+    <insert id="insertTest" parameterType="kr.ac.daegu.springbootapi.test.model.TestDTO">
+        INSERT INTO Test (id, name) values (#{num}, #{name})
+    </insert>
+
     <!--<select id="selectUsers" parameterType="me.fleuve.springboot03.dto.UserDTO"
             resultType="me.fleuve.springboot03.dto.UserDTO">&lt;!&ndash; selectUsers()메서드를 호출하면 실행할 SELECT문이며, UserDTO 객체를 파라미터로 받아, UserDTO객체를 반환합니다.&ndash;&gt;
         SELECT `seq`, `name`, `country`
