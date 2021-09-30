@@ -8,7 +8,7 @@
 </select>
     <insert id="insertBoard" parameterType="kr.ac.daegu.springbootapi.board.model.BoardDTO">
         insert into board (author, subject, content, writeDate, writeTime, readCount, commentCount, password, replyRootId, depth, orderNum)
-        values (#{author}, #{subject}, #{content}, CURDATE(), CURTIME(), 0, 0, #{password}, 0, 0, 0)
+        values (#{author}, #{subject}, #{content}, #{writeDate}, #{writeTime}, 0, 0, #{password}, 0, 0, 0)
     </insert>
 
 

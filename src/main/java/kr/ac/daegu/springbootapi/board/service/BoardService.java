@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -18,6 +20,11 @@ public class BoardService {
 
     public BoardDTO insertBoard(BoardDTO boardDTO) throws Exception {
         log.debug(boardDTO.toString());
+
+        // Inserted Date, Inserted Time 정의
+        boardDTO.setWriteDate(LocalDate.now());
+        boardDTO.setWriteTime(LocalTime.now());
+
         int insertedRowCount = boardDAO.insertBoard(boardDTO);
         if(insertedRowCount > 0){
 
