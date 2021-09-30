@@ -1,5 +1,6 @@
 package kr.ac.daegu.springbootapi.board.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,4 +25,24 @@ public class BoardDTO {
     private int replyRootId;                   // 원래 글 번호 (답글일 경우)
     private int depth;                   // (답글일경우) 제목의 'RE: ' 갯수
     private int orderNum;                // (답글일경우) 글 목록보기 순서
+
+
+
+    @Override
+    public String toString() {
+        return "BoardDTO{" +
+                "id=" + id +
+                ", author='" + author + '\'' +
+                ", subject='" + subject + '\'' +
+                ", content='" + content + '\'' +
+                ", writeDate=" + writeDate +
+                ", writeTime=" + writeTime +
+                ", readCount=" + readCount +
+                ", commentCount=" + commentCount +
+                ", password='" + password + '\'' +
+                ", replyRootId=" + replyRootId +
+                ", depth=" + depth +
+                ", orderNum=" + orderNum +
+                '}';
+    }
 }

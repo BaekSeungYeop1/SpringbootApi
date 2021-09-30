@@ -7,4 +7,6 @@ import java.util.List;
 @Repository
 public interface BoardDAO {
     List<BoardDTO> getBoardList();
+
+    int insertBoard(BoardDTO boardDTO);
 }
