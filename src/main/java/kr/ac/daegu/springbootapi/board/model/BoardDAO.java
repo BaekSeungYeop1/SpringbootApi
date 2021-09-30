@@ -9,4 +9,6 @@ public interface BoardDAO {
     List<BoardDTO> getBoardList();
 
     int insertBoard(BoardDTO boardDTO);
+
+    int putBoard(BoardDTO boardDTO);
 }

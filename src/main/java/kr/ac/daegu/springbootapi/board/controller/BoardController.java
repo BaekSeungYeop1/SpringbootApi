@@ -22,7 +22,7 @@ public class BoardController {
     public final BoardService boardService;
 
     @GetMapping(value = "/")
-    public ApiResponse<BoardDTO> getBoardList(){
+    public ApiResponse<BoardDTO> getBoardList() {
         List<BoardDTO> list = boardService.getBoardList();
         return new ApiResponse(true, list);
     }
@@ -33,5 +33,12 @@ public class BoardController {
     public ApiResponse<BoardDTO> insertBoard(@RequestBody BoardDTO boardDTO) throws Exception {
         BoardDTO dto = boardService.insertBoard(boardDTO);
         return new ApiResponse<>(true, dto);
+    }
+
+    @PutMapping(value = "/{id}")
+    public String putBoard(@PathVariable int id,
+                           @RequestBody BoardDTO boardDTO) throws Exception {
+        log.debug("id: " + id);
+        return boardService.putBoard(id, boardDTO);
     }
 }

@@ -33,4 +33,21 @@ public class BoardService {
             throw new Exception("failed to insert board data");
         }
     }
+
+    public String putBoard(int id, BoardDTO boardDTO) throws Exception{
+        // author,
+        // content,
+        // subject,
+        // content
+        // writeDate, writeTime 업데이트
+        boardDTO.setId(id);
+        boardDTO.setWriteDate(LocalDate.now());
+        boardDTO.setWriteTime(LocalTime.now());
+        int result = boardDAO.putBoard(boardDTO);
+
+        if(result > 0){
+            return result + " rows updated";
+        }
+        throw new Exception("failed to update " + id + " content");
+    }
 }

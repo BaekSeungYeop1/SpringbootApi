@@ -11,5 +11,15 @@
         values (#{author}, #{subject}, #{content}, #{writeDate}, #{writeTime}, 0, 0, #{password}, 0, 0, 0)
     </insert>
 
+    <update id="putBoard" parameterType="kr.ac.daegu.springbootapi.board.model.BoardDTO">
+        UPDATE BOARD
+        SET author=#{author},
+            content=#{content},
+            subject=#{subject},
+            writeDate=#{writeDate},
+            writeTime=#{writeTime}
+        WHERE id=#{id}
+    </update>
+
 
 </mapper>
