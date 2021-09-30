@@ -10,7 +10,7 @@ CREATE TABLE `test` (
 
 -- 게시글
 CREATE TABLE Board (
-                       id           INT           primary key COMMENT '게시글id', -- 게시글id
+                       id           INT           primary key AUTO_INCREMENT COMMENT '게시글id', -- 게시글id
                        author       VARCHAR(200)  NOT NULL COMMENT '작성자', -- 작성자
                        subject      VARCHAR(300)  NOT NULL COMMENT '제목', -- 제목
                        content      VARCHAR(2000) NOT NULL COMMENT '내용', -- 내용
@@ -27,7 +27,7 @@ CREATE TABLE Board (
 
 -- 댓글
 CREATE TABLE Comment (
-                         cid       INT           primary key COMMENT '댓글id', -- 댓글id
+                         cid       INT           primary key AUTO_INCREMENT COMMENT '댓글id', -- 댓글id
                          id        INT           NOT NULL COMMENT '게시글id', -- 게시글id
                          author    VARCHAR(200)  NOT NULL COMMENT '작성자', -- 작성자
                          content   VARCHAR(2000) NOT NULL COMMENT '댓글내용', -- 댓글내용
