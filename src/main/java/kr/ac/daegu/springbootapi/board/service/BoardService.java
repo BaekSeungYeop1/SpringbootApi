@@ -50,4 +50,17 @@ public class BoardService {
         }
         throw new Exception("failed to update " + id + " content");
     }
+
+
+    public String deleteBoard(int id) throws Exception{
+        int result = boardDAO.deleteBoard(id);
+
+        if (result > 0){
+            return result + " rows deleted";
+        }
+        throw new Exception("failed to delete " + id + " content");
+
+    }
+
+
 }
