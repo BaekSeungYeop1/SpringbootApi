@@ -26,10 +26,16 @@
         WHERE id = #{id}
     </select>
 
+    <!-- 내가 만든 글삭제 -->
     <delete id="deleteBoard" parameterType="kr.ac.daegu.springbootapi.board.model.BoardDTO">
         delete from BOARD where id = #{id}
     </delete>
 
-
+    <!-- 강사님이 만든 글 삭제 -->
+    <update id="updateIsDelBoardById" parameterType="int">
+        UPDATE BOARD
+        SET isDEL = 'Y'
+        WHERE id = #{id}
+    </update>
 
 </mapper>

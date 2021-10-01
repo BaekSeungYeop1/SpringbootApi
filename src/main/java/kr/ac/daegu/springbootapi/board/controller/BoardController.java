@@ -49,12 +49,21 @@ public class BoardController {
         return boardService.getBoardById(id);
     }
 
-    // 글 삭제
+    // 내가 만든 글 삭제
     // 요청URL은 DELETE http://localhost:8080/board/{id}
-
+    /*
     @DeleteMapping(value = "/{id}")
     public String deleteBoard(@PathVariable int id) throws Exception {
         log.debug("id: " + id);
         return boardService.deleteBoard(id);
+    }
+     */
+
+    // 글 삭제
+    // isDeleted : Y로 업데이트 시킴.
+    // 요청URL은 DELETE http://localhost:8080/board/{id}
+    @DeleteMapping(value = "/{id}")
+    public ApiResponse<BoardDTO> updateIsDelBoardById(@PathVariable int id) throws Exception {
+        return boardService.updateIsDelBoardById(id);
     }
 }
