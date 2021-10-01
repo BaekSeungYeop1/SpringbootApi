@@ -3,7 +3,6 @@ package kr.ac.daegu.springbootapi.board.controller;
 import kr.ac.daegu.springbootapi.board.model.BoardDTO;
 import kr.ac.daegu.springbootapi.board.service.BoardService;
 import kr.ac.daegu.springbootapi.common.ApiResponse;
-import kr.ac.daegu.springbootapi.test.model.TestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +44,10 @@ public class BoardController {
     /* mission */
     // 글 읽기
     // 요청URL은 GET http://localhost:8080/board/{id}
-    
+    @GetMapping(value = "/{id}")
+    public ApiResponse<BoardDTO> getBoardById(@PathVariable int id) throws Exception {
+        return boardService.getBoardById(id);
+    }
 
     // 글 삭제
     // 요청URL은 DELETE http://localhost:8080/board/{id}

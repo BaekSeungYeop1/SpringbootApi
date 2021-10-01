@@ -2,6 +2,7 @@ package kr.ac.daegu.springbootapi.board.service;
 
 import kr.ac.daegu.springbootapi.board.model.BoardDAO;
 import kr.ac.daegu.springbootapi.board.model.BoardDTO;
+import kr.ac.daegu.springbootapi.common.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -62,5 +63,8 @@ public class BoardService {
 
     }
 
-
+    public ApiResponse<BoardDTO> getBoardById(int id) {
+        BoardDTO data = boardDAO.getBoardById(id);
+        return new ApiResponse(true, data);
+    }
 }

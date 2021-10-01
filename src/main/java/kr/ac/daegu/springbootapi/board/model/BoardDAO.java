@@ -13,4 +13,6 @@ public interface BoardDAO {
     int putBoard(BoardDTO boardDTO);
 
     int deleteBoard(int id);
+
+    BoardDTO getBoardById(int id);
 }

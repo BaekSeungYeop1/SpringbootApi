@@ -21,9 +21,15 @@
         WHERE id=#{id}
     </update>
 
+    <select id="getBoardById" parameterType="int" resultType="kr.ac.daegu.springbootapi.board.model.BoardDTO">
+        SELECT * from Board
+        WHERE id = #{id}
+    </select>
+
     <delete id="deleteBoard" parameterType="kr.ac.daegu.springbootapi.board.model.BoardDTO">
         delete from BOARD where id = #{id}
     </delete>
+
 
 
 </mapper>
