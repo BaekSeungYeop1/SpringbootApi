@@ -17,7 +17,12 @@ import java.util.List;
 public class BoardService {
     public final BoardDAO boardDAO;
 
-    public List<BoardDTO> getBoardList() { return boardDAO.getBoardList();}
+    //6 글 전체 보기 수정
+    //GET /board/
+    //isDel = ‘Y’ 인 아이들만 보이도록
+    public List<BoardDTO> getBoardList() {
+        return boardDAO.getBoardList();
+    }
 
     public BoardDTO insertBoard(BoardDTO boardDTO) throws Exception {
         log.debug(boardDTO.toString());
@@ -96,12 +101,18 @@ public class BoardService {
 
 
     // Board테이블의 isDel 컬럼의 데이터를 'Y' 로 업데이트
-    public ApiResponse<BoardDTO> updateIsDelBoardById(int id) {
-        int updatedRow = boardDAO.updateIsDelBoardById(id);
-        if(updatedRow > 0) {
-            return new ApiResponse(true, "board id " + id + " is successfully deleted");
+    public ApiResponse<BoardDTO> updateIsDelBoardById(int id, BoardDTO boardDTO) {
+        BoardDTO selectedData = boardDAO.getBoardById(id);
+        String userInputPassword = boardDTO.getPassword();
+
+        if (userInputPassword.equals(selectedData.getPassword())) {
+            int updatedRow = boardDAO.updateIsDelBoardById(id);
+
+            if (updatedRow > 0) {
+                return new ApiResponse(true, "success to delete board id " + id);
+            }
         }
-        return new ApiResponse(false, "failed to delete board id " + id);
+        return new ApiResponse(false, "password incorrect in board id " + id);
     }
 
 

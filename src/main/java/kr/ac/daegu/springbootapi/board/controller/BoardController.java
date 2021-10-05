@@ -74,12 +74,33 @@ public class BoardController {
         return boardService.deleteBoard(id);
     }
      */
-
     // 글 삭제
     // isDeleted : Y로 업데이트 시킴.
     // 요청URL은 DELETE http://localhost:8080/board/{id}
-    @DeleteMapping(value = "/{id}")
-    public ApiResponse<BoardDTO> updateIsDelBoardById(@PathVariable int id) throws Exception {
-        return boardService.updateIsDelBoardById(id);
+
+    //5 글 삭제 기능: 패스워드 일치하면 삭제처리 되도록
+    /*
+    DELETE /board/{id} 고쳐서.
+    isDel 컬럼을 업데이트하는
+    비즈니스 로직은 그대로 가져감.
+    패스워드 일치: json response 아래처럼 나오도록
+    {
+    “success”: true,
+    “message”: “success to delete board id {id}”
     }
+    패스워드 일치하지 않으면
+    아래 json response 나오도록
+    {
+    “success”: false,
+    “message”: “password incorrect in board id {id}”
+    “data”: null
+    }
+     */
+    @DeleteMapping(value = "/{id}")
+    public ApiResponse<BoardDTO> updateIsDelBoardById(@PathVariable int id,
+                                                      @RequestBody BoardDTO boardDTO) throws Exception {
+        return boardService.updateIsDelBoardById(id, boardDTO);
+    }
+
+
 }
