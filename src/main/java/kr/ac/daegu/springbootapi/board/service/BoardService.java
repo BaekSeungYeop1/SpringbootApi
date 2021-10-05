@@ -35,6 +35,7 @@ public class BoardService {
         }
     }
 
+    /*
     public String putBoard(int id, BoardDTO boardDTO) throws Exception{
         // author,
         // content,
@@ -50,6 +51,29 @@ public class BoardService {
             return result + " rows updated";
         }
         throw new Exception("failed to update " + id + " content");
+    }
+     */
+
+    public ApiResponse<BoardDTO> putBoard(int id, BoardDTO boardDTO) {
+        BoardDTO selectedData = boardDAO.getBoardById(id);
+        String userInputPassword = boardDTO.getPassword();
+
+        if (userInputPassword.equals(selectedData.getPassword())) {
+            // author,
+            // content,
+            // subject,
+            // content
+            // writeDate, writeTime 업데이트
+            boardDTO.setId(id);
+            boardDTO.setWriteDate(LocalDate.now());
+            boardDTO.setWriteTime(LocalTime.now());
+            int result = boardDAO.putBoard(boardDTO);
+
+            if (result > 0) {
+                return new ApiResponse(true, "success to update board id " + id);
+            }
+        }
+        return new ApiResponse(false,"password incorrect in board id " + id);
     }
 
     public ApiResponse<BoardDTO> getBoardById(int id) {
@@ -79,4 +103,6 @@ public class BoardService {
         }
         return new ApiResponse(false, "failed to delete board id " + id);
     }
+
+
 }

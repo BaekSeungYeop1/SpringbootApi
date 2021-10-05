@@ -47,4 +47,5 @@ public class BoardDTO {
                 ", orderNum=" + orderNum +
                 '}';
     }
+
 }
