@@ -7,5 +7,10 @@
         SELECT * FROM Comment WHERE id = #{id}
     </select>
 
+    <insert id="insertComment" parameterType="kr.ac.daegu.springbootapi.comment.model.CommentDTO">
+        insert into comment (id, author, content,writeDate,writeTime)
+        values (#{id},#{author},#{content},#{writeDate},#{writeTime})
+    </insert>
+
 
 </mapper>
