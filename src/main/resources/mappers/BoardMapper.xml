@@ -5,6 +5,7 @@
 
 <select id="getBoardList" resultType="kr.ac.daegu.springbootapi.board.model.BoardDTO">
     SELECT * FROM Board
+    WHERE isDel = "N"
 </select>
     <insert id="insertBoard" parameterType="kr.ac.daegu.springbootapi.board.model.BoardDTO">
         insert into board (author, subject, content, writeDate, writeTime, readCount, commentCount, password, replyRootId, depth, orderNum)
