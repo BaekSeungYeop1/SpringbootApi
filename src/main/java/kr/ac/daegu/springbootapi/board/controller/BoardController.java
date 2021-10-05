@@ -34,8 +34,24 @@ public class BoardController {
         return new ApiResponse<>(true, dto);
     }
 
+    //4 글 수정 기능: 패스워드 일치하면 수정 되도록
+    /*
+    PUT /board/{id} 고쳐서.
+    패스워드 일치: json response 아래처럼 나오도록
+    {
+    “success”: true,
+    “message”: “success to update board id {id}”
+    }
+    패스워드 일치하지 않으면
+    아래 json response 나오도록
+    {
+    “success”: false,
+    “message”: “password incorrect in board id {id}”
+    “data”: null
+    }
+     */
     @PutMapping(value = "/{id}")
-    public String putBoard(@PathVariable int id,
+    public ApiResponse<BoardDTO> putBoard(@PathVariable int id,
                            @RequestBody BoardDTO boardDTO) throws Exception {
         log.debug("id: " + id);
         return boardService.putBoard(id, boardDTO);
