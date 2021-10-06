@@ -43,9 +43,8 @@ public class CommentController {
     //“message”: “success to post comment in board id {id}”
     //}
     @PostMapping(value = "/")
-    public ApiResponse<CommentDTO> insertComment(@RequestBody CommentDTO commentDTO) throws Exception{
-        CommentDTO dto = commentService.insertComment(commentDTO);
-        return new ApiResponse(true, "success to post comment in board id " + commentDTO.getId());
+    public ApiResponse<CommentDTO> insertComment(@RequestBody CommentDTO commentDTO) throws Exception {
+        return commentService.insertComment(commentDTO);
     }
 
 
