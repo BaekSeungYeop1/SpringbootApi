@@ -2,6 +2,8 @@ package kr.ac.daegu.springbootapi.board.service;
 
 import kr.ac.daegu.springbootapi.board.model.BoardDAO;
 import kr.ac.daegu.springbootapi.board.model.BoardDTO;
+import kr.ac.daegu.springbootapi.comment.model.CommentDAO;
+import kr.ac.daegu.springbootapi.comment.model.CommentDTO;
 import kr.ac.daegu.springbootapi.common.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,7 @@ import java.util.List;
 @Slf4j
 public class BoardService {
     public final BoardDAO boardDAO;
+    public final CommentDAO commentDAO;
 
     //6 글 전체 보기 수정
     //GET /board/
@@ -83,6 +86,8 @@ public class BoardService {
 
     public ApiResponse<BoardDTO> getBoardById(int id) {
         BoardDTO data = boardDAO.getBoardById(id);
+        List<CommentDTO> commentsById = commentDAO.getCommentsById(id);
+        data.setComments(commentsById);
         return new ApiResponse(true, data);
     }
 

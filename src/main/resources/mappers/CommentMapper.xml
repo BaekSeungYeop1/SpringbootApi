@@ -7,6 +7,11 @@
         SELECT * FROM Comment WHERE id = #{id}
     </select>
 
+    <select id="getCommentsById" parameterType="int" resultType="kr.ac.daegu.springbootapi.comment.model.CommentDTO">
+        SELECT * FROM COMMENT
+        where id = #{id}
+    </select>
+
     <insert id="insertComment" parameterType="kr.ac.daegu.springbootapi.comment.model.CommentDTO">
         insert into comment (id, author, content,writeDate,writeTime)
         values (#{id},#{author},#{content},#{writeDate},#{writeTime})

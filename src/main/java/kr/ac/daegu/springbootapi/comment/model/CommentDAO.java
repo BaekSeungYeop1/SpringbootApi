@@ -13,4 +13,6 @@ public interface CommentDAO {
 
 
     int insertComment(CommentDTO commentDTO);
+
+    List<CommentDTO> getCommentsById(int id);
 }
