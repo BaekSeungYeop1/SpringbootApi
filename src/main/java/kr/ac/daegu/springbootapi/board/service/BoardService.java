@@ -88,6 +88,12 @@ public class BoardService {
         BoardDTO data = boardDAO.getBoardById(id);
         List<CommentDTO> commentsById = commentDAO.getCommentsById(id);
         data.setComments(commentsById);
+
+        String deletedData = data.getIsDel();
+        log.debug("deletedData = " + deletedData);
+        if (deletedData.equals("Y")){
+            return new ApiResponse(false, "board id " + id + " is already deleted.");
+        }
         return new ApiResponse(true, data);
     }
 

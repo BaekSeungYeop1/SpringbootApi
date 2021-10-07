@@ -30,6 +30,7 @@ public class BoardDTO {
     private int replyRootId;                   // 원래 글 번호 (답글일 경우)
     private int depth;                   // (답글일경우) 제목의 'RE: ' 갯수
     private int orderNum;                // (답글일경우) 글 목록보기 순서
+    private String isDel;               // 삭제 여부 확인
 
     private List<CommentDTO> comments = null;
 
