@@ -46,3 +46,9 @@ ALTER TABLE Comment
             REFERENCES Board ( -- 게시글
                               id -- 게시글id
                 );
+
+create table member(
+                       id bigint primary key,
+                       email varchar(300),
+                       password varchar(3000)
+)
