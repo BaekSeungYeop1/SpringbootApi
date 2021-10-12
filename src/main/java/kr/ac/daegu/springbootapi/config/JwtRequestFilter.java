@@ -25,10 +25,8 @@ import java.util.List;
 @Slf4j
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private JwtUserDetailsService jwtUserDetailsService;
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+    private final JwtUserDetailsService jwtUserDetailsService;
+    private final JwtTokenUtil jwtTokenUtil;
 
     private static final List<String> EXCLUDE_URL =
             Collections.unmodifiableList(
@@ -36,6 +34,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                             "/api/member",
                             "/authenticate"
                     ));
+
+    public JwtRequestFilter(JwtUserDetailsService jwtUserDetailsService, JwtTokenUtil jwtTokenUtil) {
+        this.jwtUserDetailsService = jwtUserDetailsService;
+        this.jwtTokenUtil = jwtTokenUtil;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
