@@ -48,7 +48,7 @@ ALTER TABLE Comment
                 );
 
 create table member(
-                       id bigint primary key,
+                       id bigint primary key AUTO_INCREMENT,
                        email varchar(300),
                        password varchar(3000)
 )
