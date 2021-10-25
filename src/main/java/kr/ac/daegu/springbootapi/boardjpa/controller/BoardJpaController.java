@@ -30,6 +30,10 @@ public class BoardJpaController {
         return new ApiResponse(true, data);
     }
 
-
+    @PostMapping(value = "/")
+    public ApiResponse<BoardDTO> postBoard(BoardDTO boardDTO){
+        Board data = boardJpaService.postBoard(boardDTO);
+        return new ApiResponse(true, data);
+    }
 }
 
