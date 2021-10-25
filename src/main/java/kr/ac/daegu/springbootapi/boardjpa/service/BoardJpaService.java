@@ -21,4 +21,7 @@ public class BoardJpaService {
         return boardRepository.findAll();
     }
 
+    public Board getBoardById(Integer id) {
+        return boardRepository.findBoardById(id);
+    }
 }
