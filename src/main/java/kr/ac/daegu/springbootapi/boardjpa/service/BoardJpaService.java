@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -47,4 +48,20 @@ public class BoardJpaService {
 
         return boardRepository.save(postData);
     }
+
+    public Board putBoard(int id, BoardDTO boardDTO) {
+        Optional<Board> boardData = boardRepository.findBoardById(id);
+
+        // 람다식을 사용하여
+        boardData.ifPresent(selectedBoard -> {
+            selectedBoard.setAuthor(boardDTO.getAuthor());
+            selectedBoard.setSubject(boardDTO.getSubject());
+            selectedBoard.setContent(boardDTO.getContent());
+            selectedBoard.setPassword(boardDTO.getPassword());
+            boardRepository.save(selectedBoard);
+        });
+
+        return boardData.orElseGet(boardData::get);
+    }
+
 }

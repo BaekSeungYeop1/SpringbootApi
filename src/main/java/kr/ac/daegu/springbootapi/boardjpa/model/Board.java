@@ -10,6 +10,7 @@ import java.time.LocalTime;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "board")
 @ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
