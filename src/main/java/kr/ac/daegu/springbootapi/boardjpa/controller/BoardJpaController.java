@@ -42,5 +42,10 @@ public class BoardJpaController {
         Board data = boardJpaService.putBoard(id, boardDTO);
         return new ApiResponse(true, data);
     }
+
+    // DELETE /boardjpa/{id} 구현할것.
+    // logic : board.controller.BoardController의 로직 따를것
+    //         무슨말이냐면 DB에 데이터를 DELETE 시키지 말고, board 컬럼 중 isDel 을 "Y"로 업데이트.
+
 }
 
