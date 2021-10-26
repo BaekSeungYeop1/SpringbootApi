@@ -65,4 +65,15 @@ public class BoardJpaService {
         return boardData.orElseGet(boardData::get);
     }
 
+    public Board updateIsDelBoardById(int id) {
+        Optional<Board> boardData = boardRepository.findBoardById(id);
+
+        // 람다식 사용
+        boardData.ifPresent(selectedBoard -> {
+            selectedBoard.setIsDel("Y");
+            boardRepository.save(selectedBoard);
+        });
+
+        return boardData.orElseGet(boardData::get);
+    }
 }

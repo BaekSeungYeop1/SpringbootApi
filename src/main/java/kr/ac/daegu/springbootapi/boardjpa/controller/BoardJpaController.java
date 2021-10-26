@@ -47,5 +47,10 @@ public class BoardJpaController {
     // logic : board.controller.BoardController의 로직 따를것
     //         무슨말이냐면 DB에 데이터를 DELETE 시키지 말고, board 컬럼 중 isDel 을 "Y"로 업데이트.
 
+    @DeleteMapping(value = "/{id}")
+    public ApiResponse<BoardDTO> updateIsDelBoardById(@PathVariable int id){
+        Board data = boardJpaService.updateIsDelBoardById(id);
+        return new ApiResponse(true, data);
+    }
 }
 
