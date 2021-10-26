@@ -11,4 +11,6 @@ public interface BoardRepository extends CrudRepository<Board, Integer> {
 
     Board findBoardById(Integer id);
     Optional<Board> findBoardById(int id);
+
+    List<Board> findBoardByIsDel(String isDel);
 }

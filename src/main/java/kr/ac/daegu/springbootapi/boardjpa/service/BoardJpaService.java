@@ -23,7 +23,7 @@ public class BoardJpaService {
 
     public List<Board> getBoardList() {
         // 숙제 2 : jpa queryMethod를 수정하여 isDel이 "N"인 데이터row들만 나오도록 수정
-        return boardRepository.findAll();
+        return boardRepository.findBoardByIsDel("N");
     }
 
     public Board getBoardById(Integer id) {
