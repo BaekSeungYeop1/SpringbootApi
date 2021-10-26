@@ -4,6 +4,7 @@ import kr.ac.daegu.springbootapi.board.model.BoardDTO;
 import kr.ac.daegu.springbootapi.boardjpa.model.Board;
 import kr.ac.daegu.springbootapi.boardjpa.model.BoardRepository;
 import kr.ac.daegu.springbootapi.comment.model.CommentDAO;
+import kr.ac.daegu.springbootapi.common.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -65,15 +66,19 @@ public class BoardJpaService {
         return boardData.orElseGet(boardData::get);
     }
 
-    public Board updateIsDelBoardById(int id) {
+    public ApiResponse<BoardDTO> updateIsDelBoardById(int id, String boardPssword) {
+        // JDK 1.8 Optional에 관해 찾아볼것.
         Optional<Board> boardData = boardRepository.findBoardById(id);
+        // 위 boardData가 null 이면 RuntimeException 발생시키고 메소드 종료.
+        Board data = boardData.orElseThrow(() -> new RuntimeException("no data"));
+        // password 비교
+        if (data.getPassword().equals(boardPssword)){
+            data.setIsDel("Y");
+            boardRepository.save(data); // JPA는 INSERT나 update 같이 save()를 호출
+            return new ApiResponse(true, "board id " + id + " is successfully deleted");
+        } else {
+            return new ApiResponse(false, "failed to delete board id " + id);
+        }
 
-        // 람다식 사용
-        boardData.ifPresent(selectedBoard -> {
-            selectedBoard.setIsDel("Y");
-            boardRepository.save(selectedBoard);
-        });
-
-        return boardData.orElseGet(boardData::get);
     }
 }
