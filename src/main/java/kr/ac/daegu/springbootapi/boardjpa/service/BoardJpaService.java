@@ -7,6 +7,8 @@ import kr.ac.daegu.springbootapi.comment.model.CommentDAO;
 import kr.ac.daegu.springbootapi.common.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -22,9 +24,10 @@ public class BoardJpaService {
     public final BoardRepository boardRepository;
     public final CommentDAO commentDAO;
 
-    public List<Board> getBoardList() {
+    public Page<Board> getBoardList() {
         // 숙제 2 : jpa queryMethod를 수정하여 isDel이 "N"인 데이터row들만 나오도록 수정
-        return boardRepository.findBoardByIsDel("N");
+        PageRequest pageRequest = PageRequest.of(0, 5);
+        return boardRepository.findBoardsByIsDel("N", pageRequest);
     }
 
     public Board getBoardById(Integer id) {
