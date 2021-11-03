@@ -38,7 +38,18 @@ public class BoardJpaService {
     // 답글 작성할 수 있을려면 java단에서 id값을 정한 뒤 save해야 하겠다.
     // jpa로 max(id) + 1 하여 만든 id, replyRootId 함께 set하여 save돌려야 할듯.
     public Board postBoard(BoardDTO boardDTO) {
+        Board boardOfMaxId = boardRepository.findTopByOrderByIdDesc();
+        int newBoardIdValue;
+        if(boardOfMaxId == null) {
+            newBoardIdValue = 1;
+            log.debug("no board data, maxId is 1");
+        } else {
+            newBoardIdValue = boardOfMaxId.getId() + 1;
+            log.debug("maxIdFromBoard="+boardOfMaxId.getId());
+        }
+        log.debug("newBoardIdValue="+newBoardIdValue);
         Board postData = Board.builder()
+                .id(newBoardIdValue)
                 .author(boardDTO.getAuthor())
                 .subject(boardDTO.getSubject())
                 .content(boardDTO.getContent())
@@ -48,7 +59,7 @@ public class BoardJpaService {
                 .orderNum(0)
                 .isDel("N")
                 .readCount(0)
-                .replyRootId(0)
+                .replyRootId(newBoardIdValue)
                 .writeDate(LocalDate.now())
                 .writeTime(LocalTime.now())
                 .build();
