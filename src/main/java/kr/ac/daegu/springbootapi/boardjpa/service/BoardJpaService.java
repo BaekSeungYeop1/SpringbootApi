@@ -148,7 +148,7 @@ public class BoardJpaService {
         return new ApiResponse(true, dto);
     }
 
-    // 아래 메소드의 뜻을 한국어로 번역 해 보시오.
+    // 답글의 깊이 depth의 값만큼 "RE:"를 제목에 붙여주는 역할
     private String appendPrefixString(String appendPrefix, int loop, String target) {
         StringBuilder builder = new StringBuilder();
         for(int i=0; i<=loop; i++){
