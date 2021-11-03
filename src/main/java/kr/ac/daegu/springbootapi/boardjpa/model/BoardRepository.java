@@ -1,6 +1,7 @@
 package kr.ac.daegu.springbootapi.boardjpa.model;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -40,4 +41,6 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 
     // 최고 Id값을 가진 Board 엔터티를 가져옴
     Board findTopByOrderByIdDesc();
+
+    Page<Board> findBoardsByIsDelOrderByReplyRootIdDescOrderNumAsc(String isDel, Pageable pageable);
 }

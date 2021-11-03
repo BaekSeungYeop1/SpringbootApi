@@ -28,7 +28,11 @@ public class BoardJpaService {
     public Page<Board> getBoardList(int page, int size) {
         // 숙제 2 : jpa queryMethod를 수정하여 isDel이 "N"인 데이터row들만 나오도록 수정
         PageRequest pageRequest = PageRequest.of(page, size);
-        return boardRepository.findBoardsByIsDel("N", pageRequest);
+        // 페이지네이션 + 정렬조건 + 다른 개발자 부여 조건 하여 List하는 여러 방법들..
+        // https://dar0m.tistory.com/61
+//        return boardRepository.findBoardsByIsDel("N", pageRequest);
+        // 그외 쿼리메소드로 작성하여 바로 적용.
+        return boardRepository.findBoardsByIsDelOrderByReplyRootIdDescOrderNumAsc("N", pageRequest);
     }
 
     public Board getBoardById(Integer id) {
