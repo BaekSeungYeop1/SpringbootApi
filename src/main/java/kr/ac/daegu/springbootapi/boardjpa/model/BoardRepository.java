@@ -3,6 +3,7 @@ package kr.ac.daegu.springbootapi.boardjpa.model;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -32,6 +33,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
             " WHERE replyRootId = ?1")
     Integer getReplyOrderNum(int replyRootId);
 
+    @Modifying
     @Query("UPDATE Board SET orderNum = orderNum + 1" +
             "                WHERE replyRootId = ?1  AND orderNum >= ?2")
     void updateOrderNum(int replyRootId, int minOrderNum);
